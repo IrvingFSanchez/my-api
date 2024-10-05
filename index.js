@@ -27,6 +27,16 @@ app.get('/index.css', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.css'));  // Serve the CSS file from the root directory
 });
 
+// Serve dice.html when navigating to /dice
+app.get('/dice', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dice.html')); // Serve the dice HTML file
+  });
+
+// Serve dice.css
+app.get('/dice.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dice.css'));  // Serve the dice CSS file
+  });
+
 app.get('/users', (req, res) => {
     res.json({ users: [{ id: 1, name: 'John Doe' }] });
   });
