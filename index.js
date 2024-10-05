@@ -1,11 +1,54 @@
-// Use ES6+ syntax such as arrow functions
-import express from 'express';
+// Import express
+const express = require('express');
 
+// Create an instance of express
 const app = express();
-const port = process.env.PORT || 3000;
 
+// Specify the port to listen on
+const port = 3000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Basic GET route
 app.get('/', (req, res) => {
-    res.send('Hello, Babel!');
+  res.send('Welcome to my RESTful API!');
 });
 
-app.listen(port, () => console.log(`Server listening on port ${port}!`));
+app.get('/users', (req, res) => {
+    res.json({ users: [{ id: 1, name: 'John Doe' }] });
+  });
+  
+  app.post('/users', (req, res) => {
+    const newUser = req.body;
+    res.status(201).json({ message: 'User created', user: newUser });
+  });
+  
+// POST route to receive data
+app.post('/data', (req, res) => {
+  const data = req.body; // data sent from client in the body of the request
+  res.status(201).json({
+    message: "Data received successfully",
+    data: data
+  });
+});
+
+// PUT route to update data
+app.put('/data', (req, res) => {
+  const updatedData = req.body; // updated data from client
+  res.status(200).json({
+    message: "Data updated successfully",
+    updatedData: updatedData
+  });
+});
+
+// DELETE route to delete data
+app.delete('/data', (req, res) => {
+  // Logic to handle data deletion here
+  res.status(204).send(); // No content to send back
+});
+
+// Listen for requests
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
