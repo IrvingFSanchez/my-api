@@ -24,8 +24,11 @@ jobs:
       - name: npm install
         run: npm install
 
-      - name: Fix permissions for Babel
-        run: chmod +x ./node_modules/.bin/babel
+      - name: Install Babel CLI globally
+        run: npm install -g @babel/cli
+
+      - name: Compile code with Babel
+        run: babel index.js --out-file compiled.js
 
       - name: Build and test the app
         run: |
