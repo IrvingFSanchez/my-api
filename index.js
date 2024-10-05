@@ -37,6 +37,11 @@ app.get('/dice.css', (req, res) => {
     res.sendFile(path.join(__dirname, 'dice.css'));  // Serve the dice CSS file
   });
 
+// Serve the dice.js file
+app.get('/dice.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dice.js'));  // Serve dice.js from the root directory
+  });
+
 app.get('/users', (req, res) => {
     res.json({ users: [{ id: 1, name: 'John Doe' }] });
   });
