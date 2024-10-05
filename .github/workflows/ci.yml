@@ -25,5 +25,8 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Give execute permission to Babel
+      run: chmod +x ./node_modules/.bin/babel
+
     - name: Build project
-      run: npm run build
+      run: ./node_modules/.bin/babel index.js -d dist
