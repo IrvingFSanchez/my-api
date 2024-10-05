@@ -4,8 +4,8 @@ const express = require('express');
 // Create an instance of express
 const app = express();
 
-// Specify the port to listen on
-const port = 3000;
+// Use the PORT from the environment or default to 3000
+const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON bodies
 app.use(express.json());
