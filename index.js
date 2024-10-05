@@ -1,6 +1,8 @@
 // Import express
 const express = require('express');
 
+const path = require('path');
+
 // Create an instance of express
 const app = express();
 
@@ -10,9 +12,19 @@ const port = process.env.PORT || 3000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-// Basic GET route
 app.get('/', (req, res) => {
-  res.send('Welcome to my RESTful API!');
+  res.sendFile(path.join(__dirname, 'index.html'));  // Serve the HTML file from the root directory
+});
+
+// Roll dice endpoint
+app.get('/roll-dice', (req, res) => {
+  const result = Math.floor(Math.random() * 6) + 1;  // Simulates a dice roll (1-6)
+  res.json({ result });
+});
+
+// Serve the CSS file
+app.get('/index.css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.css'));  // Serve the CSS file from the root directory
 });
 
 app.get('/users', (req, res) => {

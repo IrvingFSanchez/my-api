@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Dice Roller API Test</title>
+  <link rel="stylesheet" href="/index.css">
+
+</head>
+
+<body>
+
+  <div class="content-container">
+    <h1>Faceless Dice Roller API</h1>
+    <button onclick="rollDiceAPI()">Roll Dice</button>
+    <div id="result" class="result-display"></div>
+  </div>
+
+  <div class="button-container">
+    <a href="dice.html" class="btn2">Go to Visual Dice Roller</a>
+  </div>
+
+  <script>
+    //This function makes a GET request to /roll-dice endpoint and updates page with the result
+    async function rollDiceAPI() {
+      try {
+        const response = await fetch("/roll-dice");
+        const data = await response.json();
+        document.getElementById("result").innerText = "Roll result: " + data.result;
+      } catch (error) {
+        console.error("Error:", error);
+        document.getElementById("result").innerText = "Error: Unable to retrieve roll.";
+      }
+    }
+   
+    document.addEventListener('DOMContentLoaded', rollDiceAPI);
+  </script>
+
+</body>
+
+</html>
